@@ -20,7 +20,7 @@ namespace EffectSystem
             Debug.Log(stacks);
             if (damageHandler.currentHealth <= stacks)
             {
-                damageHandler.TakeDamage(stacks);
+                damageHandler.Die();
                 stacks = 0;
             }
         }
