@@ -2,14 +2,15 @@ using UnityEngine;
 
 namespace EffectSystem
 {
+    [System.Serializable]
     public abstract class StatusEffect
     {
-        public int duration { get; protected set; } //-1 = permanent
-        public int maxDuration { get; protected set; }
-        public int minStacks { get; protected set; }
-        public int stacks { get; protected set; }
-        public int maxStacks { get; protected set; }
-        public StatusEffectType type { get; protected set; }
+        public int duration; //-1 = permanent
+        public int maxDuration;
+        public int minStacks;
+        public int stacks;
+        public int maxStacks;
+        public StatusEffectType type;
         public StatusEffect(int duration, int maxDuration, int stacks, int minStacks, int maxStacks, StatusEffectType type)
         {
             this.duration = duration;
@@ -24,15 +25,15 @@ namespace EffectSystem
         {
             duration += effect.duration; //Add Duration
             stacks += effect.stacks; //Add Stacks
+            maxStacks = Mathf.Max(maxStacks, effect.maxStacks);
+            minStacks = Mathf.Min(minStacks, effect.minStacks);
         }
         public virtual void OnTick() 
         { 
-            if (duration > 0)
+            if (duration > 0 && maxDuration > 0)
             {
                 duration -= 1;
             }
-
-            //Apply other tick logic
         }
         public virtual void OnRemove(StatusEffect effect) 
         { 
@@ -48,6 +49,7 @@ namespace EffectSystem
     {
         Fire,
         Ice,
+        Doom,
         Weakness
     }
 }
