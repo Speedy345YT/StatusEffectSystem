@@ -6,7 +6,7 @@ namespace EffectSystem
     {
         public StatusEffectManager manager;
         public float health;
-        public float maxhealth;
+        public float MaxHealth;
         public float currentHealth {
             get
             {
@@ -21,7 +21,7 @@ namespace EffectSystem
         {
             get
             {
-                return maxhealth;
+                return MaxHealth;
             }
             set
             {
@@ -42,16 +42,19 @@ namespace EffectSystem
             Debug.Log($"Took {amount} damage");
             health -= amount;
         }
-
-        private void Start()
-        {
-            manager.AddEffect(new DoomEffect(10));
-        }
         void Update()
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
                 manager.AddEffect(new DoomEffect(1));
+            }
+            if (Input.GetKeyDown(KeyCode.G))
+            {
+                manager.AddEffect(new FireEffect(1, 5, 1));
+            }
+            if (Input.GetKeyDown(KeyCode.H))
+            {
+                manager.AddEffect(new PoisonEffect(5, 1));
             }
         }
     }

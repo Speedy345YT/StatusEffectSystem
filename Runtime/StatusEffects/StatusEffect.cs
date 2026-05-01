@@ -6,11 +6,12 @@ namespace EffectSystem
     public abstract class StatusEffect
     {
         public int duration; //-1 = permanent
-        public int maxDuration;
-        public int minStacks;
-        public int stacks;
-        public int maxStacks;
+        public int maxDuration; //-1 = inf stacking
+        public int minStacks; //How low something needs to go to be cleared
+        public int stacks; //Current Stacks
+        public int maxStacks; //-1 = inf stacking
         public StatusEffectType type;
+        private StatusEffectManager manager;
         public StatusEffect(int duration, int maxDuration, int stacks, int minStacks, int maxStacks, StatusEffectType type)
         {
             this.duration = duration;
@@ -29,10 +30,14 @@ namespace EffectSystem
             minStacks = Mathf.Min(minStacks, effect.minStacks);
         }
         public virtual void OnTick() 
-        { 
-            if (duration > 0 && maxDuration > 0)
+        {
+            if (duration >= 1)
             {
                 duration -= 1;
+            }
+            if (maxDuration > 0)
+            {
+                duration = Mathf.Clamp(duration, 0, maxDuration);
             }
         }
         public virtual void OnRemove(StatusEffect effect) 
@@ -48,8 +53,7 @@ namespace EffectSystem
     public enum StatusEffectType 
     {
         Fire,
-        Ice,
         Doom,
-        Weakness
+        Poison
     }
 }

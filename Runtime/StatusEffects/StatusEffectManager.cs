@@ -7,7 +7,7 @@ namespace EffectSystem
 {
     public class StatusEffectManager : MonoBehaviour
     {
-        [DictionaryDrawerSettings]public Dictionary<StatusEffectType, StatusEffect> activeEffects = new Dictionary<StatusEffectType, StatusEffect>();
+        Dictionary<StatusEffectType, StatusEffect> activeEffects = new Dictionary<StatusEffectType, StatusEffect>();
         Dictionary<StatusEffectType, StatusEffect> snapshot { get { return new Dictionary<StatusEffectType, StatusEffect>(activeEffects); } }
         public void AddEffect(StatusEffect effect)
         {
@@ -21,7 +21,7 @@ namespace EffectSystem
                 
                 if (foundEffect.maxDuration > 0)
                 {
-                    foundEffect.duration = Mathf.Min(foundEffect.duration, foundEffect.duration);
+                    foundEffect.duration = Mathf.Min(foundEffect.duration, foundEffect.maxDuration);
                 }
             } else
             {
@@ -44,9 +44,9 @@ namespace EffectSystem
         }
         public void ClearEffect(StatusEffectType type)
         {
-            if (snapshot.ContainsKey(type))
+            if (snapshot.TryGetValue(type, out StatusEffect foundEffect))
             {
-                activeEffects[type].OnClear();
+                foundEffect.OnClear();
                 activeEffects.Remove(type);
             }
         }
@@ -59,9 +59,10 @@ namespace EffectSystem
             foreach (var effect in snapshot)
             {
                 effect.Value.OnTick();
-                if (effect.Value.stacks < effect.Value.minStacks || effect.Value.duration <= 0)
+                if (effect.Value.stacks <= effect.Value.minStacks || effect.Value.duration == 0)
                 {
                     ClearEffect(effect.Value.type);
+                    return;
                 }
             }
         }

@@ -6,9 +6,13 @@ namespace EffectSystem
     {
         public IDamageHandler damageHandler;
         public DoomEffect(int stacks)
-        : base(duration: 1, maxDuration: -1, stacks, minStacks: 0, maxStacks: -1, type: StatusEffectType.Doom)
+        : base(duration: -1, maxDuration: -1, stacks, minStacks: 0, maxStacks: 0, type: StatusEffectType.Doom)
         {
 
+        }
+        public override void OnReapply(StatusEffect effect)
+        {
+            stacks += effect.stacks;
         }
         public override void OnApply(GameObject t)
         {
@@ -17,10 +21,9 @@ namespace EffectSystem
         public override void OnTick()
         {
             base.OnTick();
-            Debug.Log(stacks);
             if (damageHandler.currentHealth <= stacks)
             {
-                damageHandler.Die();
+                damageHandler.TakeDamage(stacks);
                 stacks = 0;
             }
         }
