@@ -51,7 +51,7 @@ namespace EffectSystem
             }
             if (Input.GetKeyDown(KeyCode.G))
             {
-                manager.AddEffect(new FireEffect(1, 5, 1));
+                manager.AddEffect(new BurnedEffect(1, 5, 1));
             }
             if (Input.GetKeyDown(KeyCode.H))
             {

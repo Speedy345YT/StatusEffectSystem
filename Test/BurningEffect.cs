@@ -16,14 +16,31 @@ namespace EffectSystem
         }
         public override void OnTick()
         {
-            if (manager.HasEffect("Fire", out StatusEffect effect))
+            if (manager.HasEffect("Oil", out StatusEffect oilEffect))
             {
-                effect.stacks += stacks;
-                effect.duration = duration;
-                stacks -= 1;
+                if (manager.HasEffect("Fire", out StatusEffect fireEffect))
+                {
+                    fireEffect.stacks += stacks * oilEffect.stacks;
+                    fireEffect.duration = duration;
+                    oilEffect.stacks -= stacks;
+                    stacks = 0;
+                }
+                else
+                {
+                    manager.AddEffect(new BurnedEffect(duration, stacks * oilEffect.stacks, 1));
+                }
             } else
             {
-                manager.AddEffect(new FireEffect(duration, stacks, 1));
+                if (manager.HasEffect("Fire", out StatusEffect effect))
+                {
+                    effect.stacks += stacks;
+                    effect.duration = duration;
+                    stacks -= 1;
+                }
+                else
+                {
+                    manager.AddEffect(new BurnedEffect(duration, stacks, 1));
+                }
             }
         }
     }

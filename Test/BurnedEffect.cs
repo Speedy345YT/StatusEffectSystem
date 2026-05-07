@@ -2,11 +2,11 @@ using UnityEngine;
 
 namespace EffectSystem
 {
-    public class FireEffect : StatusEffect
+    public class BurnedEffect : StatusEffect
     {
         public IDamageHandler damageHandler;
         public float damagePerTick;
-        public FireEffect(int duration, int stacks, float damagePerTick)
+        public BurnedEffect(int duration, int stacks, float damagePerTick)
         : base(duration, maxDuration : -1, stacks, minStacks: 0, maxStacks: -1, type: "Fire", triggerName: "")
         {
             this.damagePerTick = damagePerTick;

@@ -28,10 +28,6 @@ namespace EffectSystem
                 activeEffects.Add(effect);
                 effect.OnApply(this.gameObject);
             }
-            foreach (var newEffect in snapshot)
-            {
-                newEffect.OnOtherEffectApplied(effect);
-            }
         }
         public void RemoveEffect(StatusEffect effect)
         {
