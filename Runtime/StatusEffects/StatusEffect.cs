@@ -31,6 +31,10 @@ namespace EffectSystem
             maxStacks = Mathf.Max(maxStacks, effect.maxStacks);
             minStacks = Mathf.Min(minStacks, effect.minStacks);
         }
+        public virtual void OnOtherEffectApplied(StatusEffect effect)
+        {
+            //Custom Logic
+        }
         public virtual void OnTick() 
         {
             if (duration >= 1)

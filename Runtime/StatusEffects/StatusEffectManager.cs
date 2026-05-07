@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using CodiceApp.EventTracking.Plastic;
 using UnityEngine;
 
 namespace EffectSystem
@@ -27,6 +28,10 @@ namespace EffectSystem
                 activeEffects.Add(effect);
                 effect.OnApply(this.gameObject);
             }
+            foreach (var newEffect in snapshot)
+            {
+                newEffect.OnOtherEffectApplied(effect);
+            }
         }
         public void RemoveEffect(StatusEffect effect)
         {
@@ -51,14 +56,16 @@ namespace EffectSystem
                 activeEffects.Remove(foundEffect);
             }
         }
-        public StatusEffect HasEffect(string type)
+        public bool HasEffect(string type, out StatusEffect effect)
         {
             StatusEffect foundEffect = snapshot.Find(x => x.type == type);
             if (foundEffect != null)
             {
-                return foundEffect;
+                effect = foundEffect;
+                return true;
             }
-            return null;
+            effect = null;
+            return false;
         }
         public void TickEffects(string eventName)
         {
