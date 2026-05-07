@@ -20,7 +20,7 @@ namespace EffectSystem
             {
                 if (manager.HasEffect("Fire", out StatusEffect fireEffect))
                 {
-                    fireEffect.stacks += stacks * oilEffect.stacks;
+                    fireEffect.stacks += stacks * (oilEffect.stacks + 1);
                     fireEffect.duration = duration;
                     oilEffect.stacks -= stacks;
                     stacks = 0;

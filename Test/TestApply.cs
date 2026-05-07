@@ -62,6 +62,10 @@ namespace EffectSystem
             }
             if (Input.GetKeyDown(KeyCode.J))
             {
+                manager.AddEffect(new OilEffect(5, 10));
+            }
+            if (Input.GetKeyDown(KeyCode.K))
+            {
                 manager.AddEffect(new PoisonEffect(5, 1));
             }
         }
