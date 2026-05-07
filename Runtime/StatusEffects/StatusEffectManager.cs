@@ -1,12 +1,13 @@
 using System.Collections.Generic;
 using CodiceApp.EventTracking.Plastic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace EffectSystem
 {
     public class StatusEffectManager : MonoBehaviour
     {
-        List<StatusEffect> activeEffects = new List<StatusEffect>();
+        public List<StatusEffect> activeEffects = new List<StatusEffect>();
         List<StatusEffect> snapshot { get { return new List<StatusEffect>(activeEffects); } }
         public void AddEffect(StatusEffect effect)
         {
