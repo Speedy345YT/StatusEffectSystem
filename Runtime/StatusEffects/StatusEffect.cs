@@ -10,9 +10,10 @@ namespace EffectSystem
         public int minStacks; //How low something needs to go to be cleared
         public int stacks; //Current Stacks
         public int maxStacks; //-1 = inf stacking
-        public StatusEffectType type;
+        public string type;
+        public string triggerName; //When this triggers
         private StatusEffectManager manager;
-        public StatusEffect(int duration, int maxDuration, int stacks, int minStacks, int maxStacks, StatusEffectType type)
+        public StatusEffect(int duration, int maxDuration, int stacks, int minStacks, int maxStacks, string type, string triggerName)
         {
             this.duration = duration;
             this.maxDuration = maxDuration;
@@ -20,6 +21,7 @@ namespace EffectSystem
             this.maxStacks = maxStacks;
             this.minStacks = minStacks;
             this.type = type;
+            this.triggerName = triggerName;
         }
         public virtual void OnApply(GameObject target) { }
         public virtual void OnReapply(StatusEffect effect) 
@@ -49,11 +51,5 @@ namespace EffectSystem
         {
             
         }
-    }
-    public enum StatusEffectType 
-    {
-        Fire,
-        Doom,
-        Poison
     }
 }

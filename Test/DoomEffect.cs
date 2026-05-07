@@ -6,7 +6,7 @@ namespace EffectSystem
     {
         public IDamageHandler damageHandler;
         public DoomEffect(int stacks)
-        : base(duration: -1, maxDuration: -1, stacks, minStacks: 0, maxStacks: 0, type: StatusEffectType.Doom)
+        : base(duration: -1, maxDuration: -1, stacks, minStacks: 0, maxStacks: 0, type: "Doom", triggerName: "")
         {
 
         }

@@ -44,6 +44,7 @@ namespace EffectSystem
         }
         void Update()
         {
+            manager.TickEffects("");
             if (Input.GetKeyDown(KeyCode.F))
             {
                 manager.AddEffect(new DoomEffect(1));

@@ -7,7 +7,7 @@ namespace EffectSystem
         public IDamageHandler damageHandler;
         public float damagePerTick;
         public FireEffect(int duration, int stacks, float damagePerTick)
-        : base(duration, maxDuration : -1, stacks, minStacks: 0, maxStacks: -1, type: StatusEffectType.Fire)
+        : base(duration, maxDuration : -1, stacks, minStacks: 0, maxStacks: -1, type: "Fire", triggerName: "")
         {
             this.damagePerTick = damagePerTick;
         }

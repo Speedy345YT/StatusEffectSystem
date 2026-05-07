@@ -7,7 +7,7 @@ namespace EffectSystem
         public IDamageHandler damageHandler;
         public float damagePerTick;
         public PoisonEffect(int stacks, float damagePerTick)
-        : base(duration: -1, maxDuration: -1, stacks, minStacks: 0, maxStacks: -1, type: StatusEffectType.Fire)
+        : base(duration: -1, maxDuration: -1, stacks, minStacks: 0, maxStacks: -1, type: "Poison", triggerName: "")
         {
             this.damagePerTick = damagePerTick;
         }
