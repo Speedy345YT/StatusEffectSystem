@@ -58,11 +58,11 @@ namespace EffectSystem
             }
             if (Input.GetKeyDown(KeyCode.H))
             {
-                manager.AddEffect(new BurningEffect(10, 5));
+                manager.AddEffect(new BurningEffect(10, 1));
             }
             if (Input.GetKeyDown(KeyCode.J))
             {
-                manager.AddEffect(new OilEffect(5, 10));
+                manager.AddEffect(new OilEffect(5, 1));
             }
             if (Input.GetKeyDown(KeyCode.K))
             {

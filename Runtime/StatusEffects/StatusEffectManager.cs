@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using CodiceApp.EventTracking.Plastic;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace EffectSystem
